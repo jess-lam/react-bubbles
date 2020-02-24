@@ -11,6 +11,10 @@ const BubblePage = () => {
   // set that data to the colorList state property
 
   useEffect(() => {
+    getRequest()
+  }, [])
+
+  const getRequest = () => {
     axiosWithAuth()
     .get("/api/colors")
     .then(res => {
@@ -19,11 +23,11 @@ const BubblePage = () => {
     .catch(err => {
       console.log(err)
     })
-  })
+  }
 
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} />
+      <ColorList colors={colorList} updateColors={setColorList} getRequest={getRequest} />
       <Bubbles colors={colorList} />
     </>
   );
